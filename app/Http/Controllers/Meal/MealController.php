@@ -1,18 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\member;
+namespace App\Http\Controllers\meal;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
-use App\Member;
+use App\Meal;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Session;
+use Auth;
+use DB;
 
-class MemberController extends Controller
+class MealController extends Controller
 {
     //
     public function index(){
-    	$members = Member::paginate(15);
-        return view('member.mealView', compact('members'));
+    	//$members = Member::paginate(15);
+        $foods = Meal::all();
+        return view('meal.mealView', compact('foods'));
     }
         /**
      * Show the form for creating a new resource.
@@ -22,7 +27,7 @@ class MemberController extends Controller
     public function create()
     {
         
-        return view('member.addMeal');
+        return view('meal.addMeal');
     }
 
     /**
@@ -34,19 +39,23 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required', 'email' => 'required', 'password' => 'required', 'roles' => 'required']);
+        $this->validate($request, []);
+        //$id = 0;
+        $meal = new Meal();
+        $meal->user_id = Auth::user()->id;
+        $meal->self_meal_breakfast = Input::get('self_meal_breakfast')? 1: 0;
+        $meal->self_meal_lunch = Input::get('self_meal_lunch')? 1: 0;
+        $meal->self_meal_dinner = Input::get('self_meal_dinner')? 1: 0;
+        $meal->guest_meal_breakfast = Input::get('guest_meal_breakfast')? 1: 0;
+        $meal->guest_meal_lunch = Input::get('guest_meal_lunch')? 1: 0;
+        $meal->guest_meal_dinner = Input::get('guest_meal_dinner')? 1: 0;
+        $meal->extra_meal = Input::get('extra_meal');
 
-        $data = $request->except('password');
-        $data['password'] = bcrypt($request->password);
-        $user = User::create($data);
+        $meal->save();        
 
-        foreach ($request->roles as $role) {
-            $user->assignRole($role);
-        }
+        Session::flash('flash_message', 'Meal added!');
 
-        Session::flash('flash_message', 'User added!');
-
-        return redirect('admin/users');
+        return redirect('meal.mealView');
     }
 
     /**
@@ -58,8 +67,8 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        $member = Member::findOrFail($id);
-        return view('member.mealView', compact('member'));
+        $meal = Meal::findOrFail($id);
+        return view('meal.mealView', compact('meal'));
     }
 
     /**

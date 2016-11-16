@@ -17,6 +17,7 @@
         <link href="{{URL::asset('css/font-awesome.min.css')}}" rel="stylesheet">
         <link href="{{URL::asset('css/select2.min.css')}}" rel="stylesheet">
         <link href="{{URL::asset('css/sweetalert.css')}}" rel="stylesheet">
+        <link href="{{URL::asset('css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
 
 
         <!-- Scripts -->
@@ -94,6 +95,8 @@
         <script src="{{URL::asset('js/select2.min.js')}}"></script>
         <script src="{{URL::asset('js/bootstrap.min.js')}}"></script>
         <script src="{{URL::asset('js/sweetalert.min.js')}}"></script>
+        <script src="{{URL::asset('js/jquery.dataTables.min.js')}}"></script>
+        <script src="{{URL::asset('js/dataTables.bootstrap.min.js')}}"></script>
         <script type="text/javascript">
             $(document).ready(function() {
               $(".selecting").select2({
@@ -107,6 +110,11 @@
                 // Navigation active
                 $('ul.navbar-nav a[href="{{ "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" }}"]').closest('li').addClass('active');
             });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#example').DataTable();
+            } );
         </script>
     </body>
 </html>

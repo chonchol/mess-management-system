@@ -26,9 +26,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' =>
 	Route::resource('/users', 'Admin\UsersController');
 });
 
-Route::group(['prefix' => 'member', 'middleware' => ['auth', 'roles'], 'roles' => 'member'], function () {
-	Route::get('/', 'Member\MemberController@index');
-	Route::get('/meal/add', 'Member\MemberController@create');
+Route::group(['prefix' => 'meal', 'middleware' => ['auth', 'roles'], 'roles' => 'member'], function () {
+	Route::get('/', 'Meal\MealController@index');
+	Route::get('/add', 'Meal\MealController@create');
+	Route::post('/save', 'Meal\MealController@store');
+
 
 });
 

@@ -28,12 +28,17 @@
     </li>
 </ul>
 <div class="form-group{{ $errors->has('extra_meal') ? ' has-error' : ''}}">
-    {!! Form::label('extra_meal', 'Extra Meal (if needed): ', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('extra_meal', 'Extra Meal (if needed): ', ['class' => 'col-md-3 control-label']) !!}
     <div class="col-md-6">
         {!! Form::number('extra_meal', null, ['class' => 'form-control']) !!}
         {!! $errors->first('extra_meal', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-<hr>
-        <h2>Total Meal on This day (<?php echo date("F j,"); ?>): </h2>
 
+<h2 style="margin-left: 2%;margin-top: 7%;margin-bottom: 2%;"><hr>Total Meal on This day (<?php echo date("j F"); ?>): </h2>
+
+<div class="form-group">
+    <div class="col-md-offset-4 col-md-4">
+        {!! Form::submit('Add Meal', ['class' => 'btn btn-primary']) !!}
+    </div>
+</div>
