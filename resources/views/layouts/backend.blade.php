@@ -81,14 +81,14 @@
         @endif
 
         @yield('content')
-
+<!--
         <hr/>
 
         <div class="container" style="color:white;font-weight:bold">
             &copy; {{ date('Y') }}. Created by <a href="http://www.mahmudbd.com">Chonchol Mahmud</a>
             <br/>
         </div>
-
+-->
         <!-- Scripts -->
         <script src="/js/app.js"></script>
         <script src="{{URL::asset('js/jQuery-3.1.1.min.js')}}"></script>

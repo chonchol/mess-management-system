@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-	Route::auth();
+Route::auth();
+
 // Check role in route middleware
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
 	Route::get('/', 'Admin\AdminController@index');
@@ -26,6 +24,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' =>
 	Route::resource('/users', 'Admin\UsersController');
 });
 
+//meal create
 Route::group(['prefix' => 'meal', 'middleware' => ['auth', 'roles'], 'roles' => 'member'], function () {
 	Route::get('/', 'Meal\MealController@index');
 	Route::get('/add', 'Meal\MealController@create');
@@ -34,5 +33,5 @@ Route::group(['prefix' => 'meal', 'middleware' => ['auth', 'roles'], 'roles' => 
 
 });
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
