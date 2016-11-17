@@ -24,10 +24,14 @@ class Meal extends Model
     {
         return $this->self_meal_dinner + $this->guest_meal_dinner;
     }
+    public function getTotalExtraMealAttribute($value)
+    {
+        return $this->extra_meal;
+    }
     
     public function getTotalMealAttribute($value)
     {
-        return $this->self_meal_breakfast + $this->guest_meal_breakfast + $this->self_meal_lunch + $this->guest_meal_lunch + $this->self_meal_dinner + $this->guest_meal_dinner;
+        return $this->self_meal_breakfast + $this->guest_meal_breakfast + $this->self_meal_lunch + $this->guest_meal_lunch + $this->self_meal_dinner + $this->guest_meal_dinner + $this->extra_meal;
     }
 
 }

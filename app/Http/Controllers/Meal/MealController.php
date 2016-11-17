@@ -55,7 +55,7 @@ class MealController extends Controller
 
         Session::flash('flash_message', 'Meal added!');
 
-        return redirect('meal.mealView');
+        return redirect('meal/');
     }
 
     /**

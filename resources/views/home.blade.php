@@ -12,6 +12,7 @@
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <?php $i=1; ?>
                             <thead>
+                                <tr><th class="text-center">Name</th></tr>
                                 <tr>
                                     <th>#</th>
                                     <th>Date</th>

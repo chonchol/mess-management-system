@@ -8,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Welcome <span class="pull-right" style="color: #5cb85c;"><?php echo "Today:". date("j F");?></span></div>
 
-                      {!! Form::open(['url' => '/meal','method' => 'post','class' => 'form-horizontal']) !!}
+                      {!! Form::open(['url' => '/meal/save','method' => 'post','class' => 'form-horizontal']) !!}
 
                       @include ('meal.form')
 
